@@ -1,0 +1,81 @@
+import java.util.Scanner;
+
+public class SavingsAccountRunner {	
+	static Scanner myobj= new Scanner(System.in);
+	
+	public static void main(String[] args) {
+		//connects the users account to SavingAccount.java services
+		SavingsAccount account = new SavingsAccount();		
+		
+		
+        System.out.println("Welcome to your Savings Account App!");
+        
+        //obtain account number and set as id         
+        System.out.println("Enter your account number:");
+        account.setId(myobj.nextInt());
+        //obtain the starting balance and set balance into users account
+        System.out.println("Please enter your intial balance: ");
+        account.setBalance(myobj.nextDouble());
+        //obtain and set users annual interest rate
+        System.out.println("Please enter your annual interest rate: ");
+        account.setAnnualInterestRate(myobj.nextDouble());        
+       
+        /*creating a switch selection in a do-while loop for the ATM options
+         *initializing variable 'choice' outside of do-while so it can
+         *be set as a while condition 
+         */
+        int choice = 0;
+        
+        do {
+        //Print output for ATM options
+        System.out.println("\n=================");
+        System.out.println("= Options Below =");
+        System.out.println("=================");
+        
+        System.out.println("1. Deposit");
+        System.out.println("2. View Weekly Interest Rate");
+        System.out.println("3. View Account Details");
+        System.out.println("4. Exit");
+        //Obtain users choice
+        choice = myobj.nextInt();                   	
+        //a while loop to validate user choice a vbalid choice
+        while(choice > 4 || choice < 1) {
+        	System.out.println("Invalid entry!\nPlease make a valid choice!");
+        	choice = myobj.nextInt();
+        }
+       
+        switch(choice) {
+        	//case 1 = user selection 1 
+        	case 1: 
+        		System.out.println("Enter your deposit amount: ");
+        		//setting variable 'placeholder' and using a while loop to check if user entered a valid number
+        		double placeholder = myobj.nextDouble();
+        		while(placeholder < 0) {
+        			System.out.println("All deposits must be greater than or equal to 0!");
+        			placeholder = myobj.nextDouble();
+        		}
+        		account.deposit(placeholder);        	    
+        		System.out.println("New Balance: " + account.getBalance());      		
+        		break;
+        	//case 2 = user selection 2
+        	case 2: 
+        		//print the users weekly interest rate
+        		System.out.printf("Your Weekly Interest Amount is $%.2f ", account.getWeeklyInterest());
+        		break;
+        	//case 3 = user selection 3
+        	case 3:
+        		//prints users id, account creation date&time, current balance, and weekly interest rate
+        		System.out.println("Account ID: " + account.getId());
+        		System.out.println("Account Creation Date/Time: " + account.getDateCreated());
+        		System.out.println("Balance " + account.getBalance());
+        		System.out.printf("Weekly Interest Amount: $%.2f", account.getWeeklyInterest());
+        		break;
+        	//case 4 = user selection 4
+        	case 4:
+        		//thank user for sing program and end program
+        		System.out.println("Thank you - Goodbye!");
+        	}
+        }while(choice != 4);
+       
+        }
+}

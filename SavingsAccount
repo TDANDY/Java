@@ -1,0 +1,64 @@
+/*
+* SavingsAccount.java
+* file containing SavingAccount class that has all the back-end options needed for ATM customers
+*/
+
+public class SavingsAccount {
+	//setting variables	      
+	private int id;
+    private double balance = 0;
+    private static double annualInterestRate =0;
+    private java.util.Date dateCreated;
+
+    //obtain date created
+    public SavingsAccount() {
+        dateCreated = new java.util.Date();
+    }
+    //return the date created to string
+    public String getDateCreated() {
+        return this.dateCreated.toString();
+    }
+    //savings account class
+    public SavingsAccount(int id, double balace) {
+        this();
+        this.id = id;
+        this.balance = balance;
+    }
+    //get id (straightforward?)
+    public int getId() {
+        return this.id;
+    }
+    //set id
+    public void setId(int id) {
+        this.id = id;
+    }
+    //get balance
+    public double getBalance() {
+        return this.balance;
+    }
+    //set balance
+    public void setBalance(double balance) {
+        this.balance = balance;
+    }
+    //get annual interest rate
+    public double getAnnualInterestRate() {
+        return annualInterestRate;
+    }
+    //set annual interest rate
+    public void setAnnualInterestRate(double annualInterestRate) {
+        this.annualInterestRate = annualInterestRate;
+    } 
+    //obtain the weekly interest rate by dividing annual interest rate
+    //by 100 then diving that result by amount of weeks in a year
+    public double getWeeklyInterestRate() {
+        return (annualInterestRate / 100) / 52 ;
+    }
+    //get weekly interest rate by multipling balance by weekly interest rate  
+    public double getWeeklyInterest() {
+        return balance * getWeeklyInterestRate();
+    } 
+    //obtain deposit input from user as variable 'amount' and add to users balance
+    public void deposit(double amount) {    	
+        this.balance += amount; 	
+    }
+}

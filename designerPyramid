@@ -1,0 +1,34 @@
+//A fun project I saw online and recreated
+import java.util.Scanner;
+
+public class design {
+
+
+	public static void main(String[] args) {
+				
+		Scanner myobj = new Scanner(System.in); 
+		
+		//Ask user to input a number 
+		System.out.println("Please enter a whole number: ");
+		int number = myobj.nextInt();
+		
+		for(int i = 1; i<=number; i++) {
+					
+			//Input spaces in each row that is not full
+			for(int space = number-i; space>=1; space--) {
+				System.out.printf("    ");
+			}
+			//To descend
+			for(int descend = i; descend >= 1; descend--) {
+				System.out.printf("% 4d", descend);
+					
+			}
+			//To ascend
+			for(int ascend = 1; ascend < i; ascend++) {
+				System.out.printf("% 4d", ascend);
+			}
+					
+		System.out.println(" ");
+		}
+	}
+}
